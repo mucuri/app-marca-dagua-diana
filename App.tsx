@@ -1,29 +1,7 @@
-import React, { useState, useRef, useCallback, useEffect } from 'react';
+import React, { useState, useRef, useCallback } from 'react';
 import { UploadIcon, DownloadIcon, ImageIcon, XCircleIcon, LogoIcon } from './components/icons';
 
 type Status = 'idle' | 'loading' | 'success' | 'error';
-type Theme = 'star-trek' | 'matrix' | 'cyberpunk' | 'solar-flare';
-
-const themes: { name: Theme; color: string }[] = [
-  { name: 'star-trek', color: 'bg-blue-400' },
-  { name: 'matrix', color: 'bg-emerald-400' },
-  { name: 'cyberpunk', color: 'bg-fuchsia-500' },
-  { name: 'solar-flare', color: 'bg-amber-500' },
-];
-
-const ThemeSwitcher: React.FC<{ setTheme: (theme: Theme) => void; currentTheme: Theme }> = ({ setTheme, currentTheme }) => (
-  <div className="absolute top-4 right-4 bg-slate-900/30 backdrop-blur-sm p-2 rounded-full flex items-center gap-2">
-    {themes.map(theme => (
-      <button
-        key={theme.name}
-        onClick={() => setTheme(theme.name)}
-        className={`w-6 h-6 rounded-full ${theme.color} transition-transform duration-200 hover:scale-110 ${currentTheme === theme.name ? 'ring-2 ring-offset-2 ring-offset-slate-800 ring-white' : ''}`}
-        aria-label={`Switch to ${theme.name} theme`}
-      />
-    ))}
-  </div>
-);
-
 
 const App: React.FC = () => {
   const [originalImage, setOriginalImage] = useState<string | null>(null);
@@ -31,12 +9,7 @@ const App: React.FC = () => {
   const [processedImage, setProcessedImage] = useState<string | null>(null);
   const [status, setStatus] = useState<Status>('idle');
   const [error, setError] = useState<string | null>(null);
-  const [theme, setTheme] = useState<Theme>('star-trek');
   const fileInputRef = useRef<HTMLInputElement>(null);
-
-  useEffect(() => {
-    document.documentElement.setAttribute('data-theme', theme);
-  }, [theme]);
 
   const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
@@ -135,27 +108,26 @@ const App: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen text-[var(--color-primary-text)] flex flex-col items-center justify-center p-4 selection:bg-[var(--color-accent)] selection:text-black relative">
-      <ThemeSwitcher setTheme={setTheme} currentTheme={theme} />
+    <div className="min-h-screen text-slate-200 flex flex-col items-center justify-center p-4 selection:bg-fuchsia-500 selection:text-white">
       <div className="w-full max-w-5xl mx-auto">
         <header className="text-center mb-8 flex flex-col items-center">
             <div className="flex items-center gap-4 mb-2">
                 <LogoIcon className="w-20 h-20" />
                 <h1 className="text-4xl md:text-5xl font-bold text-white tracking-tight">Gerador de Marca D'Agua</h1>
             </div>
-            <p className="text-lg text-[var(--color-secondary-text)]">Adicione uma marca D'agua profissional às suas imagens instantaneamente e Gratis.</p>
+            <p className="text-lg text-slate-400">Adicione uma marca D'agua profissional às suas imagens instantaneamente e Gratis.</p>
         </header>
 
-        <main className="glass-panel rounded-2xl shadow-2xl shadow-black/30 p-6 md:p-8 grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <main className="bg-slate-900/50 backdrop-blur-xl border border-slate-700/50 rounded-2xl shadow-2xl shadow-black/30 p-6 md:p-8 grid grid-cols-1 lg:grid-cols-2 gap-8">
           <div className="flex flex-col space-y-6">
-            <h2 className="text-2xl font-semibold text-white border-b-2 border-[var(--color-accent-translucent)] pb-2">1. Controle</h2>
+            <h2 className="text-2xl font-semibold text-white border-b-2 border-emerald-500/50 pb-2">1. Controle</h2>
             
             {!originalImage ? (
                 <div 
                     onClick={triggerFileInput}
-                    className="relative block w-full h-48 rounded-lg border-2 border-dashed border-[var(--color-input-border)] text-center hover:border-[var(--color-accent)] hover:bg-black/20 cursor-pointer transition-all duration-300 flex flex-col justify-center items-center group"
+                    className="relative block w-full h-48 rounded-lg border-2 border-dashed border-slate-600 text-center hover:border-blue-400 hover:bg-black/20 cursor-pointer transition-all duration-300 flex flex-col justify-center items-center group"
                 >
-                    <UploadIcon className="mx-auto h-12 w-12 text-slate-500 group-hover:text-[var(--color-accent)] transition-colors" />
+                    <UploadIcon className="mx-auto h-12 w-12 text-slate-500 group-hover:text-blue-400 transition-colors" />
                     <span className="mt-2 block text-sm font-medium text-slate-300">
                       Clique para carregar uma imagem
                     </span>
@@ -180,14 +152,14 @@ const App: React.FC = () => {
                 value={watermarkText}
                 onChange={(e) => setWatermarkText(e.target.value)}
                 placeholder="Digite seu texto aqui"
-                className="block w-full px-3 py-2 bg-[var(--color-input-bg)] border border-[var(--color-input-border)] rounded-md shadow-sm placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-[var(--color-accent)] focus:border-[var(--color-accent)] sm:text-sm text-white"
+                className="block w-full px-3 py-2 bg-slate-800/50 border border-slate-600 rounded-md shadow-sm placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 sm:text-sm text-white"
               />
             </div>
 
             <button
               onClick={applyWatermark}
               disabled={!originalImage || status === 'loading'}
-              className="w-full flex justify-center items-center py-3 px-4 border border-transparent rounded-md shadow-lg text-sm font-medium text-white bg-[var(--color-accent)] hover:bg-[var(--color-accent-hover)] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-slate-900 focus:ring-[var(--color-accent)] disabled:bg-slate-600 disabled:cursor-not-allowed transition-all duration-300 transform active:scale-95"
+              className="w-full flex justify-center items-center py-3 px-4 border border-transparent rounded-md shadow-lg text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-slate-900 focus:ring-blue-500 disabled:bg-slate-600 disabled:cursor-not-allowed transition-all duration-300 transform active:scale-95"
             >
               {status === 'loading' ? 'Processando...' : "Aplicar Marca D'Agua"}
             </button>
@@ -196,7 +168,7 @@ const App: React.FC = () => {
                 <a
                   href={processedImage}
                   download="imagem-com-marca-Dagua.png"
-                  className="w-full flex justify-center items-center py-3 px-4 border border-transparent rounded-md shadow-lg text-sm font-medium text-slate-900 bg-[var(--color-button-special-bg)] hover:bg-[var(--color-button-special-hover)] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-slate-900 focus:ring-[var(--color-button-special-bg)] transition-all duration-300 transform active:scale-95"
+                  className="w-full flex justify-center items-center py-3 px-4 border border-transparent rounded-md shadow-lg text-sm font-medium text-slate-900 bg-amber-500 hover:bg-amber-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-slate-900 focus:ring-amber-500 transition-all duration-300 transform active:scale-95"
                 >
                   <DownloadIcon className="w-5 h-5 mr-2" />
                   Baixar Imagem
@@ -206,7 +178,7 @@ const App: React.FC = () => {
           </div>
 
           <div className="flex flex-col space-y-6">
-            <h2 className="text-2xl font-semibold text-white border-b-2 border-[var(--color-accent-translucent)] pb-2">2. Visualização</h2>
+            <h2 className="text-2xl font-semibold text-white border-b-2 border-fuchsia-500/50 pb-2">2. Visualização</h2>
             <div className="w-full h-full min-h-[20rem] bg-black/20 rounded-lg flex items-center justify-center p-2">
               {processedImage ? (
                 <img src={processedImage} alt="Imagem com marca D'agua" className="max-w-full max-h-full object-contain rounded-md" />
@@ -227,7 +199,7 @@ const App: React.FC = () => {
                     href="https://github.com/SOSTITUISCI-CON-IL-TUO-UTENTE/SOSTITUISCI-CON-IL-NOME-DEL-REPO" 
                     target="_blank" 
                     rel="noopener noreferrer"
-                    className="font-medium text-[var(--color-accent)] hover:underline"
+                    className="font-medium text-blue-400 hover:underline"
                 >
                     GitHub
                 </a>.

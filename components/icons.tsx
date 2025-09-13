@@ -45,9 +45,9 @@ export const LogoIcon: React.FC<IconProps> = ({ className }) => (
     <path d="M 100 20 L 180 170 L 20 170 Z" fill="url(#grad-aluminum)" stroke="#424242" strokeWidth="2" />
     <text 
       x="100" 
-      y="145" 
+      y="140" 
       fontFamily="Inter, sans-serif" 
-      fontSize="48" 
+      fontSize="40" 
       fontWeight="900" 
       fill="url(#grad-gold)" 
       textAnchor="middle" 
