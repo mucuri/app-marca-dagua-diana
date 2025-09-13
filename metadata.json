@@ -1,0 +1,5 @@
+{
+  "name": "Gerador de Marca D'Agua Diana",
+  "description": "Uma ferramenta simples e elegante para adicionar um texto de marca d'água personalizado às suas imagens. Carregue uma foto, digite seu texto, e baixe a imagem com a marca d'água aplicada no centro inferior.",
+  "requestFramePermissions": []
+}
