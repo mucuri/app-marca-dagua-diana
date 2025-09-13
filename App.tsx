@@ -1,4 +1,3 @@
-
 import React, { useState, useRef, useCallback } from 'react';
 import { UploadIcon, DownloadIcon, ImageIcon, XCircleIcon } from './components/icons';
 
@@ -189,7 +188,7 @@ const App: React.FC = () => {
             <p className="text-sm text-gray-500 dark:text-gray-400">
                 Código fonte disponível no{' '}
                 <a 
-                    href="https://github.com/SEU-NOME-DE-USUARIO/NOME-DEL-TUO-REPOSITORY" 
+                    href="https://github.com/SOSTITUISCI-CON-IL-TUO-UTENTE/SOSTITUISCI-CON-IL-NOME-DEL-REPO" 
                     target="_blank" 
                     rel="noopener noreferrer"
                     className="font-medium text-indigo-600 dark:text-indigo-400 hover:underline"
