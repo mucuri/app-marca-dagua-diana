@@ -3,18 +3,95 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Gerador de Marca d'Água | Diana</title>
+    <title>Gerador de Marca D'Agua | Diana</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-      @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+      @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap');
       body {
         font-family: 'Inter', sans-serif;
       }
+
+      :root {
+        /* Default to Star Trek theme */
+        --color-bg-gradient: linear-gradient(to bottom right, #020617, #030a24, #000000);
+        --color-primary-text: #E5E7EB;
+        --color-secondary-text: #9CA3AF;
+        --color-accent: #38BDF8; /* light blue */
+        --color-accent-hover: #0EA5E9;
+        --color-accent-translucent: rgba(56, 189, 248, 0.5);
+        --color-button-special-bg: #F59E0B; /* amber */
+        --color-button-special-hover: #FBBF24;
+        --color-panel-bg: rgba(10, 25, 47, 0.5);
+        --color-panel-border: rgba(56, 189, 248, 0.2);
+        --color-input-bg: rgba(15, 23, 42, 0.5);
+        --color-input-border: #475569;
+      }
+      
+      html[data-theme='star-trek'] {
+        --color-bg-gradient: linear-gradient(to bottom right, #020617, #030a24, #000000);
+        --color-primary-text: #E5E7EB;
+        --color-secondary-text: #9CA3AF;
+        --color-accent: #38BDF8;
+        --color-accent-hover: #0EA5E9;
+        --color-accent-translucent: rgba(56, 189, 248, 0.5);
+        --color-button-special-bg: #F59E0B;
+        --color-button-special-hover: #FBBF24;
+        --color-panel-bg: rgba(10, 25, 47, 0.5);
+        --color-panel-border: rgba(56, 189, 248, 0.2);
+        --color-input-bg: rgba(15, 23, 42, 0.5);
+        --color-input-border: #475569;
+      }
+
+      html[data-theme='matrix'] {
+        --color-bg-gradient: linear-gradient(to bottom right, #050505, #0a1a0a, #000000);
+        --color-primary-text: #6EE7B7;
+        --color-secondary-text: #34D399;
+        --color-accent: #34D399; /* emerald */
+        --color-accent-hover: #10B981;
+        --color-accent-translucent: rgba(52, 211, 153, 0.5);
+        --color-button-special-bg: #A78BFA; /* violet */
+        --color-button-special-hover: #8B5CF6;
+        --color-panel-bg: rgba(5, 20, 5, 0.5);
+        --color-panel-border: rgba(52, 211, 153, 0.2);
+        --color-input-bg: rgba(5, 15, 5, 0.5);
+        --color-input-border: #166534;
+      }
+      
+      html[data-theme='cyberpunk'] {
+        --color-bg-gradient: linear-gradient(to bottom right, #1a001a, #290029, #0d000d);
+        --color-primary-text: #F0ABFC;
+        --color-secondary-text: #D946EF;
+        --color-accent: #D946EF; /* fuchsia */
+        --color-accent-hover: #C026D3;
+        --color-accent-translucent: rgba(217, 70, 239, 0.5);
+        --color-button-special-bg: #22D3EE; /* cyan */
+        --color-button-special-hover: #06B6D4;
+        --color-panel-bg: rgba(26, 0, 26, 0.5);
+        --color-panel-border: rgba(217, 70, 239, 0.2);
+        --color-input-bg: rgba(20, 0, 20, 0.5);
+        --color-input-border: #701a75;
+      }
+      
+      html[data-theme='solar-flare'] {
+        --color-bg-gradient: linear-gradient(to bottom right, #1e0a00, #3b1400, #000000);
+        --color-primary-text: #FDE68A;
+        --color-secondary-text: #F59E0B;
+        --color-accent: #F59E0B; /* amber */
+        --color-accent-hover: #D97706;
+        --color-accent-translucent: rgba(245, 158, 11, 0.5);
+        --color-button-special-bg: #EF4444; /* red */
+        --color-button-special-hover: #DC2626;
+        --color-panel-bg: rgba(20, 5, 0, 0.5);
+        --color-panel-border: rgba(245, 158, 11, 0.2);
+        --color-input-bg: rgba(30, 10, 0, 0.5);
+        --color-input-border: #92400e;
+      }
+
       .glass-panel {
-        background: rgba(255, 255, 255, 0.05);
-        backdrop-filter: blur(12px);
-        -webkit-backdrop-filter: blur(12px);
-        border: 1px solid rgba(255, 255, 255, 0.1);
+        background: var(--color-panel-bg);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        border: 1px solid var(--color-panel-border);
       }
     </style>
   <script type="importmap">
@@ -29,7 +106,7 @@
 }
 </script>
 </head>
-  <body class="bg-gradient-to-br from-gray-900 to-slate-800">
+  <body class="bg-[var(--color-bg-gradient)] bg-no-repeat bg-cover bg-fixed">
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
     <script type="module" src="/index.tsx"></script>

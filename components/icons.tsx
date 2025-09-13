@@ -30,8 +30,30 @@ export const XCircleIcon: React.FC<IconProps> = ({ className }) => (
 );
 
 export const LogoIcon: React.FC<IconProps> = ({ className }) => (
-    <svg className={className} viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-        <path d="M12.25 21C6.02 21 3 17.98 3 11.75C3 5.52 6.02 2.5 12.25 2.5C18.48 2.5 21.5 5.52 21.5 11.75C21.5 17.98 18.48 21 12.25 21ZM12.25 4C6.84 4 4.5 6.34 4.5 11.75C4.5 17.16 6.84 19.5 12.25 19.5C17.66 19.5 20 17.16 20 11.75C20 6.34 17.66 4 12.25 4Z" />
-        <path d="M14.4 15.93V17.25H9.25V6.75H14.5C16.88 6.75 17.88 8.1 17.88 10.1C17.88 11.62 17.28 12.63 16.2 13.06L18.25 17.25H16.7L14.77 13.34H14.4V15.93ZM14.4 8.25H10.75V11.91H14.4C15.91 11.91 16.38 11.19 16.38 10.08C16.38 9.03 15.91 8.25 14.4 8.25Z" />
-    </svg>
+  <svg className={className} viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <linearGradient id="grad-aluminum" x1="0%" y1="0%" x2="0%" y2="100%">
+        <stop offset="0%" style={{stopColor: '#E0E0E0', stopOpacity: 1}} />
+        <stop offset="50%" style={{stopColor: '#BDBDBD', stopOpacity: 1}} />
+        <stop offset="100%" style={{stopColor: '#E0E0E0', stopOpacity: 1}} />
+      </linearGradient>
+      <linearGradient id="grad-gold" x1="0%" y1="0%" x2="0%" y2="100%">
+        <stop offset="0%" style={{stopColor: '#FFD700', stopOpacity: 1}} />
+        <stop offset="100%" style={{stopColor: '#B8860B', stopOpacity: 1}} />
+      </linearGradient>
+    </defs>
+    <path d="M 100 20 L 180 170 L 20 170 Z" fill="url(#grad-aluminum)" stroke="#424242" strokeWidth="2" />
+    <text 
+      x="100" 
+      y="145" 
+      fontFamily="Inter, sans-serif" 
+      fontSize="48" 
+      fontWeight="900" 
+      fill="url(#grad-gold)" 
+      textAnchor="middle" 
+      stroke="#4a2c00" 
+      strokeWidth="1.5">
+      Diana App
+    </text>
+  </svg>
 );
